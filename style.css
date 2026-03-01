@@ -125,6 +125,7 @@ input[type="search"] {
 .header-green {
     background: #2f7d2f;
     color: #fff;
+    display: block;
 }
 
 .header-green-inner {
@@ -192,6 +193,7 @@ input[type="search"] {
 .header-white {
     background: #fff;
     border-bottom: 1px solid #e6e6e6;
+    display: block;
 }
 
 .header-white-inner {
@@ -217,6 +219,7 @@ input[type="search"] {
     height: 60px;
     padding: 0 20px;
     max-width: 100%;
+    position: relative;
 }
 
 /* Hamburger Menu */
@@ -279,14 +282,14 @@ input[type="search"] {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 30px;
-    padding: 0 16px;
-    background: #fff;
-    color: #2e7d32;
-    border: none;
+    height: 36px;
+    padding: 0 18px;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
     border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
     transition: all 0.2s ease;
@@ -294,7 +297,7 @@ input[type="search"] {
 }
 
 .mobile-login-btn:hover {
-    background: #f5f5f5;
+    background: rgba(255, 255, 255, 0.1);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
@@ -365,29 +368,6 @@ input[type="search"] {
     display: block;
 }
 
-.mobile-logo-text {
-    font-family: "Fidelity Sans", Arial, sans-serif;
-    font-size: 50px;
-    font-weight: 700;
-    color: #00a94f;
-    letter-spacing: -0.5px;
-}
-
-.mobile-login-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 36px;
-    padding: 0 18px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff;
-    background: transparent;
-    border: 2px solid #fff;
-    white-space: nowrap;
-}
-
 /* Mobile Menu Overlay */
 .mobile-menu-overlay {
     position: fixed;
@@ -431,7 +411,8 @@ input[type="search"] {
 }
 
 .mobile-nav-item {
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: none;
+    margin-bottom: 40px;
 }
 
 .mobile-nav-link {
@@ -2235,20 +2216,29 @@ box-shadow: 0 4px 12px rgba(47, 125, 47, 0.3);
    ========================================================================== */
 
 /* ==========================================================================
-   MOBILE STYLES (< 768px)
+   MOBILE AND TABLET STYLES (≤1024px)
    ========================================================================== */
-@media (max-width: 767px) {
-    /* Show mobile/tablet header, hide ALL desktop headers */
-    .mobile-tablet-header {
-        display: block;
+@media (max-width: 1024px) {
+    /* Hide desktop navbar completely on mobile/tablet */
+    #desktopHeader,
+    .header-green.desktop-header,
+    div.header-green,
+    div.header-white,
+    div.desktop-header {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        overflow: hidden !important;
     }
     
-    .header-green,
-    .header-white,
-    .desktop-header {
-        display: none !important;
+    /* Show mobile navbar */
+    #mobileTabletHeader,
+    div.mobile-tablet-header {
+        display: block !important;
+        visibility: visible !important;
+        height: auto !important;
     }
-
+    
     /* Header Styles */
     .header-green-inner {
         height: 36px;
@@ -2898,238 +2888,35 @@ box-shadow: 0 4px 12px rgba(47, 125, 47, 0.3);
 }
 
 /* ==========================================================================
-   TABLET STYLES (768px - 1024px)
+   DESKTOP STYLES (≥1025px)
    ========================================================================== */
-@media (min-width: 768px) and (max-width: 1024px) {
-    /* Header Styles */
-    .header-green-inner {
-        height: 36px;
-        padding: 0 20px;
+@media (min-width: 1025px) {
+    /* Hide mobile/tablet header, show desktop headers */
+    div.mobile-tablet-header {
+        display: none !important;
     }
-
-    .brand-logo {
-        height: 30px;
+    
+    .mobile-menu-overlay {
+        display: none !important;
     }
-
-    .header-links {
-        gap: 14px;
+    
+    div.header-green,
+    div.header-white,
+    div.desktop-header {
+        display: block !important;
     }
-
-    .header-link {
-        font-size: 12px;
+    
+    /* Additional specificity to ensure desktop headers are shown */
+    .site-header div.header-green,
+    .site-header div.header-white,
+    .site-header div.desktop-header {
+        display: block !important;
     }
-
-    .header-btn {
-        height: 30px;
-        padding: 0 12px;
-        font-size: 12px;
-    }
-
-    /* White Header */
-    .header-white-inner {
-        height: 32px;
-        padding: 0 20px;
-    }
-
-    /* Navigation */
-    .nav-links {
-        gap: 20px;
-    }
-
-    .nav-trigger {
-        font-size: 13px;
-        padding: 10px 0;
-    }
-
-    .nav-link {
-        font-size: 13px;
-        padding: 10px 0;
-    }
-
-    /* Search */
-    .search {
-        min-width: 200px;
-        height: 32px;
-    }
-
-    /* Hero Section */
-    .hero {
-        padding: 28px 0;
-        min-height: 480px;
-        background-image: var(--hero-bg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-
-    .hero .container {
-        padding-left: 24px;
-    }
-
-    .hero-card {
-        width: min(400px, 100%);
-        padding: 32px;
-    }
-
-    .hero-title {
-        font-size: 40px;
-        margin-bottom: 12px !important;
-    }
-
-    .hero-desc {
-        font-size: 14px;
-        max-width: 320px;
-    }
-
-    /* Slideshow Section */
-    .slideshow-section {
-        padding: 32px 0 0;
-    }
-
-    .slideshow-btn {
-        padding: 14px 18px;
-        font-size: 13px;
-    }
-
-    .slide-image img {
-        height: 280px;
-    }
-
-    .slide-text h3 {
-        font-size: 28px;
-    }
-
-    .slide-text p {
-        font-size: 15px;
-    }
-
-    /* Checking Section */
-    .checking-content {
-        gap: 40px;
-        padding: 0 20px;
-    }
-
-    .checking-image {
-        flex: 0 0 55%;
-    }
-
-    .checking-image img {
-        max-height: 350px;
-    }
-
-    .checking-title {
-        font-size: 30px !important;
-    }
-
-    .checking-description {
-        font-size: 15px !important;
-    }
-
-    /* Investing Section */
-    .investing-content {
-        gap: 40px;
-        padding: 0 20px;
-    }
-
-    .investing-image {
-        flex: 0 0 55%;
-    }
-
-    .investing-image img {
-        max-height: 350px;
-    }
-
-    .investing-title {
-        font-size: 30px !important;
-    }
-
-    .investing-description {
-        font-size: 15px !important;
-    }
-
-    .investing-features li {
-        font-size: 18px !important;
-    }
-
-    /* Cards Section */
-    .cards-section {
-        padding: 48px 0;
-    }
-
-    .cards-container {
-        gap: 20px;
-        padding: 0 20px;
-    }
-
-    .card-item {
-        min-height: 380px;
-    }
-
-    .card-image {
-        height: 180px;
-    }
-
-    .card-content {
-        padding: 24px;
-    }
-
-    .card-title {
-        font-size: 18px;
-    }
-
-    /* Retirement Section */
-    .retirement-section {
-        padding: 40px 20px;
-    }
-
-    .retirement-content {
-        gap: 40px;
-        max-width: 900px;
-    }
-
-    .retirement-image {
-        flex: 0 0 45%;
-    }
-
-    .retirement-title {
-        font-size: 26px !important;
-    }
-
-    .retirement-features li {
-        font-size: 15px;
-    }
-
-    /* Quick Links Section */
-    .quick-links-section {
-        padding: 32px 0 !important;
-    }
-
-    .quick-links-section .quick-links-content {
-        padding: 0 20px !important;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .quick-links-column {
-        flex: 0 0 calc(33.333% - 20px) !important;
-        padding: 0 10px !important;
-    }
-
-    .quick-links-divider {
-        display: none;
-    }
-
-    /* Footer */
-    .main-footer {
-        padding: 32px 0;
-    }
-
-    .footer-content {
-        padding: 0 20px;
-    }
-
-    .comprehensive-footer {
-        padding: 32px 20px;
+    
+    body div.header-green,
+    body div.header-white,
+    body div.desktop-header {
+        display: block !important;
     }
 }
 
@@ -3137,6 +2924,21 @@ box-shadow: 0 4px 12px rgba(47, 125, 47, 0.3);
    LARGE TABLET (1024px - 1200px)
    ========================================================================== */
 @media (min-width: 1025px) and (max-width: 1200px) {
+    /* Ensure desktop headers remain visible in this range */
+    .header-green,
+    .header-white,
+    .desktop-header {
+        display: block !important;
+    }
+    
+    /* Ensure mobile header remains hidden in this range */
+    .mobile-tablet-header {
+        display: none !important;
+    }
+    
+    .mobile-menu-overlay {
+        display: none !important;
+    }
     .container {
         padding: 0 24px;
     }

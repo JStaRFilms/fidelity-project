@@ -29,12 +29,26 @@ export function Header({
     // Detect mobile/tablet view
     useEffect(() => {
         const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 1024);
+            const mobile = window.innerWidth <= 1024;
+            console.log('Window width:', window.innerWidth, 'Is mobile:', mobile);
+            setIsMobile(mobile);
         };
         
+        // Initial check
         checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
+        
+        // Add resize listener with debouncing
+        let resizeTimer: NodeJS.Timeout;
+        const handleResize = () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(checkMobile, 100);
+        };
+        
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            clearTimeout(resizeTimer);
+        };
     }, []);
 
     const toggleMobileMenu = () => {
