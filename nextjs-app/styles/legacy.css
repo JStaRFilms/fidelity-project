@@ -485,6 +485,167 @@
     background: #fff;
 }
 
+.slideshow-header {
+    display: none; /* Hidden by default, shown only on mobile/tablet */
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    padding: 16px 24px;
+    position: relative;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.slideshow-header-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    padding-right: 80px;
+}
+
+.slideshow-title {
+    font-family: "Fidelity Sans", Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #111;
+    margin: 0 0 12px 0;
+    text-align: left;
+    line-height: 1.3;
+}
+
+.slideshow-progress-bar {
+    width: 100%;
+    max-width: 280px;
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slideshow-progress-fill {
+    height: 100%;
+    background: #00a94f; /* Green progress bar */
+    border-radius: 2px;
+    width: 25%; /* First slide = 25% */
+    transition: width 0.4s ease;
+}
+
+.slideshow-dropdown-container {
+    display: none; /* Hidden by default, shown only on mobile/tablet */
+    justify-content: flex-end;
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+}
+
+.slideshow-dropdown-toggle {
+    background: none;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.slideshow-dropdown-toggle:hover {
+    background-color: #f8f9fa;
+}
+
+.slideshow-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 24px;
+    height: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
+.slideshow-dots span {
+    width: 4px;
+    height: 4px;
+    background-color: #333;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.slideshow-dropdown-toggle:hover .slideshow-dots span {
+    background-color: #00a94f;
+}
+
+.slideshow-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: all 0.3s ease;
+    min-width: 220px;
+    margin-top: 8px;
+}
+
+.slideshow-dropdown-header {
+    padding: 16px 20px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.slideshow-dropdown-divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 0;
+}
+
+.slideshow-dropdown.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.slideshow-dropdown-option {
+    width: 100%;
+    padding: 16px 20px;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.slideshow-dropdown-option:last-child {
+    border-bottom: none;
+    border-radius: 0 0 12px 12px;
+}
+
+.slideshow-dropdown-option:first-child {
+    border-radius: 12px 12px 0 0;
+}
+
+.slideshow-dropdown-option:hover {
+    background-color: #f8f9fa;
+    color: #00a94f;
+}
+
 .slideshow-nav {
     display: flex;
     justify-content: center;
@@ -494,6 +655,26 @@
     max-width: fit-content;
     margin: 0 auto;
     margin-bottom: 5%;
+}
+
+.slideshow-nav.mobile-nav {
+    display: none; /* Hidden by default */
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    gap: 0;
+    margin: 0;
+    padding: 0 24px;
+    border-bottom: 2px solid #000;
+    background: #fff;
+}
+
+.slideshow-nav.mobile-nav::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.slideshow-nav.desktop-nav {
+    display: flex; /* Show by default */
 }
 
 .slideshow-btn {
@@ -509,6 +690,7 @@
     cursor: pointer;
     transition: all 0.2s ease;
     border-bottom: 3px solid transparent;
+    white-space: nowrap;
 }
 
 .slideshow-btn:hover {
@@ -2301,6 +2483,78 @@
 }
 
 /* ========================================
+   DESKTOP HOMEPAGE STYLES (min-width: 1025px)
+   ======================================== */
+@media (min-width: 1025px) {
+    /* Hide mobile elements on desktop */
+    .slideshow-header {
+        display: none !important;
+    }
+    
+    .slideshow-nav.mobile-nav {
+        display: none !important;
+    }
+    
+    .slideshow-nav-area.mobile-only {
+        display: none !important;
+    }
+    
+    .slideshow-nav.desktop-nav {
+        display: flex !important;
+    }
+    
+    .slide-content.mobile-only {
+        display: none !important;
+    }
+    
+    /* Show desktop slideshow content */
+    .slideshow-content {
+        position: relative;
+        text-align: right;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+    }
+    
+    .slide {
+        display: none;
+        width: auto;
+    }
+    
+    .slide.active {
+        display: block;
+    }
+    
+    .slide-image {
+        border-radius: 8px;
+        text-align: center;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .slide-image img {
+        width: auto;
+        height: auto;
+        max-width: none;
+        display: block;
+    }
+    
+    .slide-link-area {
+        position: absolute;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s ease;
+    }
+    
+    .slide-link-area:hover {
+        background: transparent;
+        border: none;
+        transform: scale(1.15);
+    }
+}
+
+/* ========================================
    SMALL MOBILE (max-width: 480px)
    ======================================== */
 @media (max-width: 480px) {
@@ -2369,84 +2623,186 @@
 }
 
 /* ========================================
-   HOMEPAGE MOBILE RESPONSIVE STYLES
+   MOBILE HOMEPAGE STYLES (max-width: 1024px)
    ======================================== */
-@media (max-width: 768px) {
-    /* ========================================
-       SLIDESHOW SECTION - Fix horizontal scroll
-       ======================================== */
+@media (max-width: 1024px) {
+    /* Slideshow Section - Mobile */
     .slideshow-section {
-        padding: 20px 0 0;
-        overflow: hidden;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important; /* Changed from #f8f9fa to white */
     }
+    
     .slideshow-section .container {
-        padding: 0 16px;
-        overflow: hidden;
+        padding: 0 !important;
+        max-width: 100% !important;
     }
-
-    .slideshow-nav {
-        flex-wrap: wrap;
-        gap: 0;
-        margin-bottom: 20px;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        max-width: 100%;
-        justify-content: flex-start;
-        padding: 0;
+    
+    /* Show mobile header, hide desktop nav */
+    .slideshow-header {
+        display: flex !important;
+        padding: 16px 24px;
+        margin-bottom: 0;
+        background: #f8f9fa;
+        border-bottom: 1px solid #e0e0e0;
     }
-
-    .slideshow-nav::-webkit-scrollbar {
-        display: none;
+    
+    .slideshow-nav.desktop-nav {
+        display: none !important;
     }
-
-    .slideshow-btn {
-        flex: 0 0 auto;
-        min-width: auto;
-        padding: 12px 16px;
-        font-size: 13px;
-        white-space: nowrap;
-        min-height: 48px;
-        border-bottom-width: 2px;
+    
+    /* Hide mobile navigation tabs */
+    .slideshow-nav.mobile-nav {
+        display: none !important;
     }
-
-    .slideshow-btn span {
-        display: inline;
-    }
-
-    /* CRITICAL: Fix slideshow-content overflow */
+    
     .slideshow-content {
+        position: relative !important;
         width: 100% !important;
         margin-left: 0 !important;
         overflow: hidden;
+        background: #f8f9fa;
+        min-height: 600px; /* Increased to match image height */
     }
-
+    
     .slide {
         width: 100%;
+        text-align: center;
+        min-height: 600px; /* Increased to match image height */
+    }
+    
+    .slide-image img {
+        width: 100%;
+        height: 600px; /* Increased from 500px for more prominence */
+        max-height: none;
+        object-fit: cover;
+        border-radius: 0;
+        filter: brightness(1.1) contrast(1.1);
+    }
+    
+    .slide-link-area {
+        display: none; /* Hide link areas on mobile */
+    }
+    
+    /* Show dropdown container */
+    .slideshow-dropdown-container {
+        display: flex !important;
     }
 
-    .slide-image {
-        width: 100%;
+    /* Mobile slide content styles */
+    .slideshow-nav-area.mobile-only {
+        display: block !important;
+        padding: 20px 24px;
+        background: #fff;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .slide-nav-content {
+        display: none;
+        text-align: center;
+    }
+    
+    .slide-nav-content.active {
         display: block;
+    }
+    
+    .slide-nav-text {
+        margin-bottom: 20px;
+    }
+
+    .slide-nav-text h3 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #111;
+        margin: 0 0 12px 0;
+        line-height: 1.3;
+    }
+
+    .slide-nav-text p {
+        font-size: 18px;
+        line-height: 1.5;
+        color: #555;
+        margin: 0;
+    }
+
+    .slide-nav-button-container {
+        margin-top: 20px;
+    }
+
+    .slide-nav-action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 52px;
+        padding: 0 28px;
+        background: #2f7d2f;
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        min-width: 160px;
+    }
+
+    .slide-nav-action-btn:hover {
+        background: #256625;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(47, 125, 47, 0.3);
+    }
+
+    .slide-content.mobile-only {
+        display: block !important;
+        padding: 20px 24px;
+        background: #fff;
         text-align: center;
     }
 
-    .slide-image img {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-    }
-
-    .slide-link-area {
-        display: none;
-        /* Hide link areas on mobile - images are tappable */
-    }
-
     .slide-text {
-        padding: 16px 0;
+        margin-bottom: 20px;
+    }
+
+    .slide-text h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #111;
+        margin: 0 0 12px 0;
+        line-height: 1.3;
+    }
+
+    .slide-text p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #555;
+        margin: 0;
+    }
+
+    .slide-button-container {
+        margin-top: 20px;
+    }
+
+    .slide-action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        padding: 0 24px;
+        background: #2f7d2f;
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        min-width: 140px;
+    }
+
+    .slide-action-btn:hover {
+        background: #256625;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(47, 125, 47, 0.3);
     }
 
     .slide-text h3 {
@@ -2462,7 +2818,7 @@
        CHECKING SECTION - Stack vertically
        ======================================== */
     .checking-section {
-        padding: 30px 0;
+        padding: 0 0; /* Removed top padding to eliminate space */
     }
 
     .checking-content {
@@ -2785,70 +3141,6 @@
 }
 
 /* ========================================
-   SMALL MOBILE HOMEPAGE STYLES (max-width: 480px)
-   ======================================== */
-@media (max-width: 480px){
-    /* Slideshow adjustments */
-    .slideshow-btn {
-        padding: 10px 12px;
-        font-size: 12px;
-    }
-
-    .slide-text h3 {
-        font-size: 18px;
-    }
-
-    /* Checking section */
-    .checking-title {
-        font-size: 20px;
-    }
-
-    .checking-description {
-        font-size: 14px;
-    }
-
-    /* Investing section */
-    .investing-title {
-        font-size: 20px !important;
-    }
-
-    .investing-description {
-        font-size: 14px !important;
-    }
-
-    .investing-features li {
-        font-size: 14px !important;
-    }
-
-    /* Retirement section */
-    .retirement-title {
-        font-size: 20px;
-    }
-
-    .retirement-description {
-        font-size: 14px;
-    }
-
-    /* Quick links */
-    .quick-link {
-        font-size: 12px !important;
-    }
-
-    .stay-connected-title {
-        font-size: 15px !important;
-    }
-
-    .social-link {
-        font-size: 12px !important;
-    }
-
-    /* Footer disclaimer */
-    .footer-disclaimer-content {
-        font-size: 10px !important;
-    }
-}
-
-/* ========================================
    HERO SECTION - Mobile & Tablet Responsive
    ======================================== */
 
@@ -2998,7 +3290,7 @@
     
     .slide-image img {
         width: 100vw !important;
-        height: auto !important;
+        height: 600px !important; /* Fixed from auto to 600px */
         object-fit: cover !important;
         display: block !important;
         margin: 0 !important;
@@ -3153,7 +3445,7 @@
     
     .slide-image img {
         width: 100vw !important;
-        height: auto !important;
+        height: 600px !important; /* Fixed from auto to 600px */
         object-fit: cover !important;
         display: block !important;
         margin: 0 !important;

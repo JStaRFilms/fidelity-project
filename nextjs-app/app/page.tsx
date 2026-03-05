@@ -1,17 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { Header } from "@/components/layout/Header/Header";
 import { Footer } from "@/components/layout/Footer/Footer";
+import { Slideshow } from "@/components/Slideshow/Slideshow";
 
 export default function HomePage() {
-  const [activeSlide, setActiveSlide] = useState(0);
-
-  const handleSlideClick = (index: number) => {
-    setActiveSlide(index);
-  };
-
   return (
     <>
       <Header />
@@ -43,68 +38,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="slideshow-section">
-          <div className="container">
-            <div className="slideshow-nav">
-              <button
-                className={`slideshow-btn ${activeSlide === 0 ? "active" : ""}`}
-                onClick={() => handleSlideClick(0)}
-              >
-                <span>Start investing</span>
-              </button>
-              <button
-                className={`slideshow-btn ${activeSlide === 1 ? "active" : ""}`}
-                onClick={() => handleSlideClick(1)}
-              >
-                <span>Save for retirement</span>
-              </button>
-              <button
-                className={`slideshow-btn ${activeSlide === 2 ? "active" : ""}`}
-                onClick={() => handleSlideClick(2)}
-              >
-                <span>Save for healthcare</span>
-              </button>
-              <button
-                className={`slideshow-btn ${activeSlide === 3 ? "active" : ""}`}
-                onClick={() => handleSlideClick(3)}
-              >
-                <span>Invest for a child</span>
-              </button>
-            </div>
-            <div className="slideshow-content">
-              <div className={`slide ${activeSlide === 0 ? "active" : ""}`}>
-                <div className="slide-image">
-                  <img src="/images/img2.PNG" alt="Start investing" />
-                  <Link
-                    href="/auth/open-account"
-                    className="slide-link-area"
-                    style={{ top: "73%", left: "4%", width: "20%", height: "5%" }}
-                  />
-                  <Link
-                    href="/support/learn-more"
-                    className="slide-link-area"
-                    style={{ top: "73%", left: "26%", width: "16%", height: "5%" }}
-                  />
-                </div>
-              </div>
-              <div className={`slide ${activeSlide === 1 ? "active" : ""}`}>
-                <div className="slide-image">
-                  <img src="/images/img3.PNG" alt="Save for retirement" />
-                </div>
-              </div>
-              <div className={`slide ${activeSlide === 2 ? "active" : ""}`}>
-                <div className="slide-image">
-                  <img src="/images/img4.PNG" alt="Save for healthcare" />
-                </div>
-              </div>
-              <div className={`slide ${activeSlide === 3 ? "active" : ""}`}>
-                <div className="slide-image">
-                  <img src="/images/img5.PNG" alt="Invest for a child" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Slideshow />
 
         <section className="checking-section">
           <div className="checking-content">
