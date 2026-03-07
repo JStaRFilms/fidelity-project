@@ -77,22 +77,31 @@ const SLIDES: Slide[] = [
 export function Slideshow() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const navScrollRef = useRef<HTMLDivElement>(null);
+
+  // Check if mobile/tablet on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Helper function to get correct image based on screen size
   const getSlideImage = (slide: Slide) => {
-    // Check if we're on mobile/tablet (client-side only)
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth <= 1024) {
-        // Mobile/Tablet images - use correct paths from img folder
-        const mobileImages: { [key: number]: string } = {
-          0: '/img/img6.PNG', // Start investing
-          1: '/img/img9.PNG', // Save for retirement
-          2: '/img/img7.PNG', // Save for healthcare
-          3: '/img/img8.PNG'  // Invest for a child
-        };
-        return mobileImages[slide.id] || slide.image;
-      }
+    if (isMobile) {
+      // Mobile/Tablet images - use correct paths from img folder
+      const mobileImages: { [key: number]: string } = {
+        0: '/img/img6.PNG', // Start investing
+        1: '/img/img9.PNG', // Save for retirement
+        2: '/img/img7.PNG', // Save for healthcare
+        3: '/img/img8.PNG'  // Invest for a child
+      };
+      return mobileImages[slide.id] || slide.image;
     }
     // Desktop images (default)
     return slide.image;

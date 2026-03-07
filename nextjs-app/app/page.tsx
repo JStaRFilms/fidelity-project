@@ -1,12 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Header } from "@/components/layout/Header/Header";
 import { Footer } from "@/components/layout/Footer/Footer";
 import { Slideshow } from "@/components/Slideshow/Slideshow";
 
 export default function HomePage() {
+  const [activeCard, setActiveCard] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleDotClick = (cardId: number) => {
+    setActiveCard(cardId);
+  };
+
   return (
     <>
       <Header />
@@ -87,7 +104,7 @@ export default function HomePage() {
             <h2 className="cards-title">Expertise you can act on</h2>
           </div>
           <div className="cards-container">
-            <div className="card-item">
+            <div className={`card-item ${isMobile && activeCard === 0 ? 'active' : ''}`}>
               <div className="card-half card-image">
                 <img src="/images/im1.avif" alt="Wealth Management" />
               </div>
@@ -101,7 +118,7 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="card-item">
+            <div className={`card-item ${isMobile && activeCard === 1 ? 'active' : ''}`}>
               <div className="card-half card-image">
                 <img src="/images/im2.PNG" alt="Retirement Planning" />
               </div>
@@ -115,7 +132,7 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="card-item">
+            <div className={`card-item ${isMobile && activeCard === 2 ? 'active' : ''}`}>
               <div className="card-half card-image">
                 <img src="/images/im3.avif" alt="Investing Guidance" />
               </div>
@@ -130,6 +147,27 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+          
+          {/* Carousel dots for mobile/tablet */}
+          {isMobile && (
+            <div className="carousel-dots">
+              <button
+                className={`carousel-dot ${activeCard === 0 ? 'active' : ''}`}
+                onClick={() => handleDotClick(0)}
+                aria-label="Go to Wealth Management card"
+              />
+              <button
+                className={`carousel-dot ${activeCard === 1 ? 'active' : ''}`}
+                onClick={() => handleDotClick(1)}
+                aria-label="Go to Retirement Planning card"
+              />
+              <button
+                className={`carousel-dot ${activeCard === 2 ? 'active' : ''}`}
+                onClick={() => handleDotClick(2)}
+                aria-label="Go to Investing Guidance card"
+              />
+            </div>
+          )}
         </section>
 
         <section className="investing-section">
