@@ -1,1 +1,18 @@
 backend/node_modules/
+
+# Environment variables with API keys
+backend/.env.local
+nextjs-app/.env.local
+
+# Node modules
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
