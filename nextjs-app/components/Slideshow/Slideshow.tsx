@@ -29,14 +29,14 @@ const SLIDES: Slide[] = [
     title: 'Start investing',
     image: '/images/img2.PNG',
     links: [
-      { href: '/auth/open-account', style: { top: '73%', left: '4%', width: '20%', height: '5%' } },
+      { href: '/start-investing', style: { top: '73%', left: '4%', width: '20%', height: '5%' } },
       { href: '/support/learn-more', style: { top: '73%', left: '26%', width: '16%', height: '5%' } }
     ],
     content: {
       title: 'Start investing',
       description: 'Open an account and start investing with confidence. Get access to a wide range of investment options and tools to help you reach your financial goals.',
       buttonText: 'Open an account',
-      buttonLink: '/auth/open-account'
+      buttonLink: '/start-investing'
     }
   },
   {

@@ -68,7 +68,6 @@ export function NavItem({
                 onClick={onToggle}
             >
                 {section.label}
-                <i className="fas fa-angle-down" aria-hidden="true" />
             </button>
             {(section.links || section.submenus) && (
                 <Dropdown

@@ -10,6 +10,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { MAIN_NAV } from '@/config/navigation';
 import type { NavSection } from '@/types/navigation';
 import { NavItem } from './NavItem';
+import AISearchComponent from '@/components/AISearch/AISearchComponent';
 
 export interface NavigationProps {
     /** Optional additional CSS class */
@@ -18,24 +19,6 @@ export interface NavigationProps {
     sections?: NavSection[];
     /** Whether to show the search input */
     showSearch?: boolean;
-}
-
-/**
- * Search Component
- * Renders a search input field
- */
-function SearchInput(): React.ReactElement {
-    return (
-        <div className="search">
-            <i className="fas fa-search search-icon" aria-hidden="true" />
-            <input
-                type="search"
-                className="search-input"
-                placeholder="How can we help?"
-                aria-label="Search"
-            />
-        </div>
-    );
 }
 
 /**
@@ -106,7 +89,7 @@ export function Navigation({
             </nav>
 
             <div className="nav-right">
-                {showSearch && <SearchInput />}
+                {showSearch && <AISearchComponent />}
             </div>
         </>
     );

@@ -64,15 +64,15 @@ export function TopBar({ className = '', isAuthenticated = false, isMobileMenuOp
             <div className="container header-green-inner">
                 {/* Mobile Hamburger Menu - Left side */}
                 <button 
-                    className="mobile-nav-toggle" 
+                    className="hamburger-menu" 
                     type="button" 
                     aria-label="Toggle menu" 
                     aria-expanded={isMobileMenuOpen}
                     onClick={onToggleMobileMenu}
                 >
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </button>
 
                 {/* Brand Logo - Centered on Mobile */}

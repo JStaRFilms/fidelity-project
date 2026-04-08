@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header/Header";
 import { Footer } from "@/components/layout/Footer/Footer";
 import { Slideshow } from "@/components/Slideshow/Slideshow";
+import { SmartSearch } from "@/components/search/SmartSearch";
 
 export default function HomePage() {
   const [activeCard, setActiveCard] = useState(0);
@@ -40,10 +41,10 @@ export default function HomePage() {
               </p>
 
               <div className="hero-buttons">
-                <Link href="/auth/open-account" className="btn btn-primary">
+                <Link href="/open-brokerage-account" className="btn btn-primary">
                   Open an account
                 </Link>
-                <Link href="/accounts/transfers" className="btn btn-secondary">
+                <Link href="/start-transfer" className="btn btn-secondary">
                   Start a Transfer
                 </Link>
               </div>
@@ -353,7 +354,16 @@ export default function HomePage() {
                 Stay Connected
               </h2>
               
+              <div className="investor-center-search mb-6">
+                <h3 className="text-white font-semibold mb-3">Search for Answers</h3>
+                <SmartSearch 
+                  placeholder="Ask about investing, retirement, accounts..." 
+                  className="max-w-md"
+                />
+              </div>
+
               <div className="investor-center-search">
+                <h3 className="text-white font-semibold mb-3">Find an Investor Center</h3>
                 <div className="search-container" style={{ display: "flex", alignItems: "center", background: "#fff", border: "1px solid #ccc", borderRadius: "4px", padding: "4px", maxWidth: "300px" }}>
                   <input
                     type="text"

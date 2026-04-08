@@ -25,6 +25,8 @@ export function Header({
 }: HeaderProps): React.ReactElement {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     // Detect mobile/tablet view
     useEffect(() => {
@@ -51,12 +53,33 @@ export function Header({
         };
     }, []);
 
+    // Handle scroll behavior
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            // Hide header when scrolling down, show when scrolling up
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                setIsHeaderVisible(false);
+            } else {
+                setIsHeaderVisible(true);
+            }
+            
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
+
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(prev => !prev);
     };
 
     return (
-        <header className={`site-header ${className}`}>
+        <header className={`site-header ${className} ${isHeaderVisible ? '' : 'hidden'}`}>
             {/* Green Top Bar */}
             <TopBar 
                 isAuthenticated={isAuthenticated} 

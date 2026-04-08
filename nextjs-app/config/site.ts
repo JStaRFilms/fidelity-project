@@ -41,13 +41,7 @@ export const PAGE_METADATA = {
         path: '/auth/login',
     } as const,
 
-    /** Open account page metadata */
-    openAccount: {
-        title: 'Open an Account',
-        description: 'Open a Fidelity account today and start investing for your future. Choose from brokerage, retirement, and more.',
-        path: '/auth/open-account',
-    } as const,
-
+    
     /** Portfolio page metadata */
     portfolio: {
         title: 'Portfolio Overview',
