@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 
 import authRoutes from './routes/auth.routes.js'
 import userRoutes from './routes/user.routes.js'
+import financialRoutes from './routes/financial.routes.js'
 import { errorHandler } from './middleware/error.middleware.js'
 import { notFoundHandler } from './middleware/notFound.middleware.js'
 import connectDB from './config/database.js'
@@ -49,6 +50,7 @@ app.get('/api/health', (req, res) => {
 // API Routes
 app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api', financialRoutes)
 
 // Error handling
 app.use(notFoundHandler)

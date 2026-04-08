@@ -10,7 +10,6 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { MAIN_NAV } from '@/config/navigation';
 import type { NavSection } from '@/types/navigation';
 import { NavItem } from './NavItem';
-import AISearchComponent from '@/components/AISearch/AISearchComponent';
 
 export interface NavigationProps {
     /** Optional additional CSS class */
@@ -89,8 +88,7 @@ export function Navigation({
             </nav>
 
             <div className="nav-right">
-                {showSearch && <AISearchComponent />}
-            </div>
+                            </div>
         </>
     );
 }

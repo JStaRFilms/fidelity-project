@@ -355,7 +355,7 @@ export default function HomePage() {
               </h2>
               
               <div className="investor-center-search mb-6">
-                <h3 className="text-white font-semibold mb-3">Search for Answers</h3>
+                <h3 className="text-black font-semibold mb-3">Search for Answers</h3>
                 <SmartSearch 
                   placeholder="Ask about investing, retirement, accounts..." 
                   className="max-w-md"
@@ -363,7 +363,7 @@ export default function HomePage() {
               </div>
 
               <div className="investor-center-search">
-                <h3 className="text-white font-semibold mb-3">Find an Investor Center</h3>
+                <h3 className="text-black font-semibold mb-3">Find an Investor Center</h3>
                 <div className="search-container" style={{ display: "flex", alignItems: "center", background: "#fff", border: "1px solid #ccc", borderRadius: "4px", padding: "4px", maxWidth: "300px" }}>
                   <input
                     type="text"
