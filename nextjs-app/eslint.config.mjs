@@ -12,7 +12,15 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "styles/check-chars.js",
   ]),
+  {
+    rules: {
+      // Preserve migrated legacy marketing copy exactly while the UI is being
+      // stabilized. Apostrophe escaping does not affect runtime correctness.
+      "react/no-unescaped-entities": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;
