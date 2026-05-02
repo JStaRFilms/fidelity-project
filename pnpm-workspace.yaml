@@ -1,0 +1,6 @@
+packages:
+  - "nextjs-app"
+
+ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver
